@@ -63,9 +63,14 @@
  *   5. deleteProspect(id)                         — DELETE /prospects/:id
  *   6. createCompany(data)                        — POST /companies
  *   7. deleteCompany(id)                          — DELETE /companies/:id
- * ---------------------------------------------------------------------------
+ * --------------------------------------------------------------------------- */
 const API_BASE_URL = 'https://backoffice-mpa8.onrender.com/api/bo';
 const BASE = API_BASE_URL;
+
+// Anti-tree-shaking: force BASE to survive Vite production builds.
+if (typeof window !== 'undefined') {
+  (window as any).__API_BASE__ = BASE;
+}
 const TOKEN_KEY = 'ccm_auth_token';
 
 type ListShape<T> = {
