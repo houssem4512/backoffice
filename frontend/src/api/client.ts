@@ -64,8 +64,7 @@
  *   6. createCompany(data)                        — POST /companies
  *   7. deleteCompany(id)                          — DELETE /companies/:id
  * ---------------------------------------------------------------------------
- */
-const BASE = (import.meta as any).env?.VITE_API_URL || '/api/bo';
+ */const BASE = 'https://backoffice-mpa8.onrender.com/api/bo';
 const TOKEN_KEY = 'ccm_auth_token';
 
 type ListShape<T> = {
