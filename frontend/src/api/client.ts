@@ -501,7 +501,30 @@ class ApiClient {
       body: JSON.stringify({ email, password }),
     });
 
+  /**
+   * POST /api/bo/auth/demo-login
+   * Backend bypasses DB validation and returns a real JWT — used as a
+   * backdoor when no admin user exists in the DB yet.
+   *
+   * NOTE: This method intentionally calls `request()` (which throws) rather
+   * than `safe()` (which swallows errors) so the Login page can show the
+   * actual error message in the UI.
+   */
+  demoLogin = () =>
+    this.request<{ token: string; user?: any }>('/auth/demo-login', {
+      method: 'POST',
+      body: JSON.stringify({}),
+    });
+
   getMe = () => this.request<any>('/auth/me');
+
+  /**
+   * Returns the hardcoded BASE URL. Useful for debugging in the browser
+   * console: `api.base` → 'https://backoffice-mpa8.onrender.com/api/bo'
+   */
+  get base(): string {
+    return BASE;
+  }
 
   /* ---------------- DASHBOARD ---------------- */
   getDashboardKPIs = (period = '30d') =>
@@ -1504,4 +1527,3 @@ class ApiClient {
 }
 
 export const api = new ApiClient();
-
