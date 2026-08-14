@@ -64,12 +64,8 @@
  *   6. createCompany(data)                        — POST /companies
  *   7. deleteCompany(id)                          — DELETE /companies/:id
  * ---------------------------------------------------------------------------
-// Hardcoded API URL — Vite will inline this in the build
-const BASE = 'https://backoffice-mpa8.onrender.com/api/bo';
-// Force the URL into the bundle (prevents dead code elimination)
-if (typeof window !== 'undefined') {
-  (window as any).__API_BASE__ = BASE;
-}
+const API_BASE_URL = 'https://backoffice-mpa8.onrender.com/api/bo';
+const BASE = API_BASE_URL;
 const TOKEN_KEY = 'ccm_auth_token';
 
 type ListShape<T> = {
